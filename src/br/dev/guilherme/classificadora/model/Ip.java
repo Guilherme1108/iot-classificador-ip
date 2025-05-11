@@ -10,8 +10,9 @@ public class Ip {
 	private int IpsValidos;
 	
 	       //construtor
-	public Ip(String enderecoCIDR) {
+	public void setEnderecoCIDR(String enderecoCIDR) { //set para receber o valor
 		String[] partes = enderecoCIDR.split("/"); // o .split aqui foi utilizado para separar a mascara do ip atraves da /
+		
 		this.endereco = partes[0]; // isso vai definir que o endereco ip é a primeira parte antes da /
         this.classe = calcClasse(this.endereco); // a classe vai receber o valor do endereço para realizar o cálculo
 		this.cidr = Integer.parseInt(partes[1]); // define a o cidr como a outra parte depois da /
@@ -59,18 +60,30 @@ public class Ip {
 		return ipsValidos - 2; //exclui o IP de rede e Broadcast
 	}
 	
-	
-	public void mostrarDados() {
-		System.out.println("Endereço: " + endereco + "/" + cidr);
-		System.out.println("Classe: " + classe);
-		System.out.println("Máscara em Binario: " + mascaraBinario);
-		System.out.println("Máscara em Decimal:" + mascaraDecimal);
-		System.out.println("IPs válidos: " + IpsValidos);
-		
-	}
-	
-	
-	
-	
+    // GETTERS
+    public int getCidr() {
+        return cidr;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public String getMascaraDecimal() {
+        return mascaraDecimal;
+    }
+
+    public String getMascaraBinario() {
+        return mascaraBinario;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public int getIpsValidos() {
+        return IpsValidos;
+    }
 }
+
 
