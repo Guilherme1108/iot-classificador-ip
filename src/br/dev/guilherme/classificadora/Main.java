@@ -6,17 +6,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.print("Informe o IP com CIDR que você gostaria de calcular (ex: 192.168./24):");
-		
-		Scanner leitor = new Scanner(System.in);
-		String ip = leitor.nextLine();
-		
-		Ip classeIP =  new Ip(); 
-		classeIP.DescobrirClasse(ip);
-		classeIP.calcMaskEmDeciamal(ip);
-		
-		
+        Scanner leitor = new Scanner(System.in);
+        System.out.print("Informe o IP com CIDR que você gostaria de calcular \n(ex: 192.168.10.0/24): ");
+        String entrada = leitor.nextLine();
 
+        Ip classeIP = new Ip(entrada);
+        classeIP.mostrarDados();
+        
+        leitor.close();
+		
 	}
 
 }
