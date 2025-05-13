@@ -39,7 +39,7 @@ public class TelaCalculadorIP {
         Container container = tela.getContentPane();
 
         // criando e personalizando a mensagem principal em cima
-        labelInfo = new JLabel("Informe o endereço IP com CIDR:");
+        labelInfo = new JLabel("Informe o endere�o IP com CIDR:");
         labelInfo.setBounds(40, 20, 315, 30);
 		Font FonteInfo = new Font(null, Font.BOLD, 20); // fonte para o titulo
 		labelInfo.setFont(FonteInfo); // faz a mensagem do resultado utilizar a fonte
@@ -64,27 +64,27 @@ public class TelaCalculadorIP {
 
         // criando e personalizando o resultado da mascara em binario
         labelResultadoMaskBin = new JLabel();
-        labelResultadoMaskBin.setText("Máscara Binária: ");
+        labelResultadoMaskBin.setText("M�scara Bin�ria: ");
         labelResultadoMaskBin.setBounds(40, 200, 380, 25);
         labelResultadoMaskBin.setFont(new Font(null, Font.BOLD, 14));
         labelResultadoMaskBin.setVisible(true);
 
         // criando e personalizando o resultado da mascara em decimal
         labelResultadoMaskDec = new JLabel();
-        labelResultadoMaskDec.setText("Máscara Decimal: ");
+        labelResultadoMaskDec.setText("M�scara Decimal: ");
         labelResultadoMaskDec.setBounds(40, 220, 380, 25);
         labelResultadoMaskDec.setFont(new Font(null, Font.BOLD, 14));
         labelResultadoMaskDec.setVisible(true);
 
         // criando e personalizando o resultado dos ips válidos
         labelResultadoQtd = new JLabel();
-        labelResultadoQtd.setText("IPs válidos: ");
+        labelResultadoQtd.setText("IPs v�lidos: ");
         labelResultadoQtd.setBounds(40, 240, 380, 25);
         labelResultadoQtd.setFont(new Font("A", Font.BOLD, 14));
         labelResultadoQtd.setVisible(true);
         
         // criando e personalizando a mensagem de erro
-        labelMensagemErro = new JLabel("Formato inválido! Ex: 10.0.0.1/24");
+        labelMensagemErro = new JLabel("Formato inv�lido! Ex: 10.0.0.1/24");
         labelMensagemErro.setForeground(Color.RED);
         Font mensagemErro = new Font(null, Font.BOLD, 18);
         labelMensagemErro.setFont(mensagemErro);
@@ -93,7 +93,7 @@ public class TelaCalculadorIP {
 		
 		
 		// Adicionando os componentes no painel de conteúdo do JFrame (tela)
-        container.setBackground(new Color(240, 230, 255)); //cor de fundo geral
+        container.setBackground(new Color(243, 240, 250)); //cor de fundo geral
 		container.add(labelInfo);
 		container.add(enderecoIpCIDR);
 		container.add(buttonCalcular);
@@ -118,15 +118,15 @@ public class TelaCalculadorIP {
                 
 				//pega dados calculados a partir do IP e mostra
 				labelResultadoClasse.setText("Classe: " + ip.getClasse());
-                labelResultadoMaskBin.setText("Máscara Binária: " + ip.getMascaraBinario());
-                labelResultadoMaskDec.setText("Máscara Decimal: " + ip.getMascaraDecimal());
-                labelResultadoQtd.setText("IPs válidos: " + ip.getIpsValidos());
+                labelResultadoMaskBin.setText("M�scara Bin�ria: " + ip.getMascaraBinario());
+                labelResultadoMaskDec.setText("M�scara Decimal: " + ip.getMascaraDecimal());
+                labelResultadoQtd.setText("IPs v�lidos: " + ip.getIpsValidos());
 				
 			} catch (Exception ex) { //quando tiver um erro e entrar no catch ele irá tirar os resultados e mostrar a mensagem de erro
 				labelResultadoClasse.setText("Classe: ??? ");
-                labelResultadoMaskBin.setText("Máscara Binária: ??? ");
-                labelResultadoMaskDec.setText("Máscara Decimal: ??? ");
-                labelResultadoQtd.setText("IPs válidos: ??? ");
+                labelResultadoMaskBin.setText("M�scara Bin�ria: ??? ");
+                labelResultadoMaskDec.setText("M�scara Decimal: ??? ");
+                labelResultadoQtd.setText("IPs v�lidos: ??? ");
 		        
                 labelMensagemErro.setVisible(true);
 			}
