@@ -23,13 +23,14 @@ public class TelaCalculadorIP {
     private JLabel labelResultadoClasse;
     private JLabel labelResultadoMaskBin;
     private JLabel labelResultadoMaskDec;
-    private JLabel labelResultadoQtd;
+    private JLabel labelResultadoQuantidade;
+    private JLabel labelResultadoRede;
     private JLabel labelMensagemErro;
     
     // configura√ß√µes padr√£o da tela
     public void criarTelaCalculadoraIP() {
         JFrame tela = new JFrame();
-        tela.setSize(460, 340);
+        tela.setSize(460, 380);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setResizable(false);
         tela.setLayout(null);
@@ -39,7 +40,7 @@ public class TelaCalculadorIP {
         Container container = tela.getContentPane();
 
         // criando e personalizando a mensagem principal em cima
-        labelInfo = new JLabel("Informe o endere«o IP com CIDR:");
+        labelInfo = new JLabel("Informe o endereÁo IP com CIDR:");
         labelInfo.setBounds(40, 20, 315, 30);
 		Font FonteInfo = new Font(null, Font.BOLD, 20); // fonte para o titulo
 		labelInfo.setFont(FonteInfo); // faz a mensagem do resultado utilizar a fonte
@@ -77,11 +78,18 @@ public class TelaCalculadorIP {
         labelResultadoMaskDec.setVisible(true);
 
         // criando e personalizando o resultado dos ips v√°lidos
-        labelResultadoQtd = new JLabel();
-        labelResultadoQtd.setText("IPs v·lidos: ");
-        labelResultadoQtd.setBounds(40, 240, 380, 25);
-        labelResultadoQtd.setFont(new Font("A", Font.BOLD, 14));
-        labelResultadoQtd.setVisible(true);
+        labelResultadoQuantidade = new JLabel();
+        labelResultadoQuantidade.setText("IPs v·lidos por rede: ");
+        labelResultadoQuantidade.setBounds(40, 240, 380, 25);
+        labelResultadoQuantidade.setFont(new Font("A", Font.BOLD, 14));
+        labelResultadoQuantidade.setVisible(true);
+        
+        // criando e personalizando o resultado dos ipRede
+        labelResultadoRede = new JLabel();
+        labelResultadoRede.setText("Redes disponiveis: ");
+        labelResultadoRede.setBounds(40, 260, 380, 25);
+        labelResultadoRede.setFont(new Font("A", Font.BOLD, 14));
+        labelResultadoRede.setVisible(true);
         
         // criando e personalizando a mensagem de erro
         labelMensagemErro = new JLabel("Formato inv·lido! Ex: 10.0.0.1/24");
@@ -100,7 +108,8 @@ public class TelaCalculadorIP {
         container.add(labelResultadoClasse);
         container.add(labelResultadoMaskBin);
         container.add(labelResultadoMaskDec);
-        container.add(labelResultadoQtd);
+        container.add(labelResultadoQuantidade);
+        container.add(labelResultadoRede);
 		container.add(labelMensagemErro);
 		
 		
@@ -120,13 +129,15 @@ public class TelaCalculadorIP {
 				labelResultadoClasse.setText("Classe: " + ip.getClasse());
                 labelResultadoMaskBin.setText("M·scara Bin·ria: " + ip.getMascaraBinario());
                 labelResultadoMaskDec.setText("M·scara Decimal: " + ip.getMascaraDecimal());
-                labelResultadoQtd.setText("IPs v·lidos: " + ip.getIpsValidos());
+                labelResultadoQuantidade.setText("IPs v·lidos por rede: " + ip.getIpsValidos());
+                labelResultadoRede.setText("Redes disponiveis: " + ip.getIpRede());
 				
 			} catch (Exception ex) { //quando tiver um erro e entrar no catch ele ir√° tirar os resultados e mostrar a mensagem de erro
 				labelResultadoClasse.setText("Classe: ??? ");
                 labelResultadoMaskBin.setText("M·scara Bin·ria: ??? ");
                 labelResultadoMaskDec.setText("M·scara Decimal: ??? ");
-                labelResultadoQtd.setText("IPs v·lidos: ??? ");
+                labelResultadoQuantidade.setText("IPs v·lidos por rede: ??? ");
+                labelResultadoRede.setText("Redes disponiveis: ??? ");
 		        
                 labelMensagemErro.setVisible(true);
 			}

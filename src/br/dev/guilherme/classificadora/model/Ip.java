@@ -7,7 +7,40 @@ public class Ip {
 	private String mascaraDecimal;
 	private String mascaraBinario;
 	private String endereco;
-	private int IpsValidos;
+	private int ipsValidos;
+	
+	private int rede;
+	
+	
+    // GETTERS
+    public int getCidr() {
+        return cidr;
+    }
+
+    public String getClasse() {
+        return classe;
+    }
+
+    public String getMascaraDecimal() {
+        return mascaraDecimal;
+    }
+
+    public String getMascaraBinario() {
+        return mascaraBinario;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public int getIpsValidos() {
+        return ipsValidos;
+    }
+    
+    public int getIpRede() {
+        return rede;
+    }
+	
 	
 	       //construtor
 	public void setEnderecoCIDR(String enderecoCIDR) { //set para receber o valor
@@ -18,7 +51,10 @@ public class Ip {
 		this.cidr = Integer.parseInt(partes[1]); // define a o cidr como a outra parte depois da /
         this.mascaraBinario = calcMaskBinario(cidr); //faz o calcMaskBinario utilizar o valor do cidr para calcular e dar este vslor para o mascaraBinario
         this.mascaraDecimal = calcMaskDecimal(mascaraBinario); // o calcMaskDecimal vai utilizar a m√°scara em binario para calcular
-        this.IpsValidos = calcQtdIPsValidos(cidr);
+        this.ipsValidos = calcQuantidadeIPsValidos(cidr);
+        this.rede = calcIpRede(classe);
+        this.rede = calcQuantidadeSubRedes(classe, cidr);
+
 	}
 	
                   // calculo da classe
@@ -55,35 +91,32 @@ public class Ip {
 	}
 	
 	         //calculo de IPs v√°lidos
-	private int calcQtdIPsValidos(int cidr) {
+	private int calcQuantidadeIPsValidos(int cidr) {
 		int ipsValidos = (int) Math.pow(2, 32 - cidr); // calculo do n√∫mero de ips v√°lidos. O (int) for√ßa o Math.pow retornar um resulto int, do que double que √© o padr√£o dele
 		return ipsValidos - 2; //exclui o IP de rede e Broadcast
 	}
+	        //calculo de numero de redes disponiveis
+	private int calcIpRede(String classse) {
+		if (classe.equals("A")) { //ele ceta esse valor para consegyuir fazer o proximo calculo 
+			return 8;
+		} else if (classe.equals("B")) {
+			return 16;
+		} else if (classe.equals("C")) {
+			return 24;
+		} else {
+			return 0;
+		}
+	}
 	
-    // GETTERS
-    public int getCidr() {
-        return cidr;
-    }
+	// c·lculo da quantidade de sub-redes possÌveis com base na classe e CIDR
+	private int calcQuantidadeSubRedes(String classe, int cidr) {
+	    int bitsRede = calcIpRede(classe); // usa o mÈtodo acima
 
-    public String getClasse() {
-        return classe;
-    }
+	    if (cidr < bitsRede) return 0; // CIDR inv·lido para essa classe
 
-    public String getMascaraDecimal() {
-        return mascaraDecimal;
-    }
+	    int bitsParaSubrede = cidr - bitsRede;
 
-    public String getMascaraBinario() {
-        return mascaraBinario;
-    }
+	    return (int) Math.pow(2, bitsParaSubrede); // 2 elevado aos bits de sub-rede
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public int getIpsValidos() {
-        return IpsValidos;
-    }
 }
-
-
