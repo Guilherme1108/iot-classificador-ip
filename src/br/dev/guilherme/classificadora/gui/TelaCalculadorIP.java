@@ -86,13 +86,13 @@ public class TelaCalculadorIP {
         
         // criando e personalizando o resultado dos ipRede
         labelResultadoRede = new JLabel();
-        labelResultadoRede.setText("Redes disponiveis: ");
+        labelResultadoRede.setText("Redes detectadas: ");
         labelResultadoRede.setBounds(40, 260, 380, 25);
         labelResultadoRede.setFont(new Font("A", Font.BOLD, 14));
         labelResultadoRede.setVisible(true);
         
         // criando e personalizando a mensagem de erro
-        labelMensagemErro = new JLabel("Formato inv·lido! Ex: 10.0.0.1/24");
+        labelMensagemErro = new JLabel("Formato inv·lido! Ex: 192.168.0.170/24");
         labelMensagemErro.setForeground(Color.RED);
         Font mensagemErro = new Font(null, Font.BOLD, 18);
         labelMensagemErro.setFont(mensagemErro);
@@ -130,14 +130,20 @@ public class TelaCalculadorIP {
                 labelResultadoMaskBin.setText("M·scara Bin·ria: " + ip.getMascaraBinario());
                 labelResultadoMaskDec.setText("M·scara Decimal: " + ip.getMascaraDecimal());
                 labelResultadoQuantidade.setText("IPs v·lidos por rede: " + ip.getIpsValidos());
-                labelResultadoRede.setText("Redes disponiveis: " + ip.getIpRede());
+                
+                //mudando o texto para caso o numero de redes seja 1
+                if (ip.getIpRede() == 1) {
+                	labelResultadoRede.setText("Redes detectadas: " + ip.getIpRede() + " Rede");
+                } else {
+                	labelResultadoRede.setText("Redes detectadas: " + ip.getIpRede() + " Sub-redes");
+                }
 				
 			} catch (Exception ex) { //quando tiver um erro e entrar no catch ele ir√° tirar os resultados e mostrar a mensagem de erro
 				labelResultadoClasse.setText("Classe: ??? ");
                 labelResultadoMaskBin.setText("M·scara Bin·ria: ??? ");
                 labelResultadoMaskDec.setText("M·scara Decimal: ??? ");
                 labelResultadoQuantidade.setText("IPs v·lidos por rede: ??? ");
-                labelResultadoRede.setText("Redes disponiveis: ??? ");
+                labelResultadoRede.setText("Redes detectadas: ??? ");
 		        
                 labelMensagemErro.setVisible(true);
 			}

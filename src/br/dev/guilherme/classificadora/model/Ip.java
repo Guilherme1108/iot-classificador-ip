@@ -63,8 +63,8 @@ public class Ip {
 
         // definindo a classe
         if (primeiroOcteto >= 0 && primeiroOcteto <= 127) return "A";  // o && é utilizado para que as 2 condições sejam verdadeiras
-        else if (primeiroOcteto >= 128 && primeiroOcteto <= 191) return "B"; // não aceitando numeros negativos e nem numeros que
-        else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) return "C"; // passam o limite
+        else if (primeiroOcteto >= 128 && primeiroOcteto <= 191) return "B"; // não aceitando numeros negativos e nem numeros que passam o limite
+        else if (primeiroOcteto >= 192 && primeiroOcteto <= 223) return "C";
         else if (primeiroOcteto >= 224 && primeiroOcteto <= 239) return "D";
         else return "E";
     }
@@ -97,7 +97,7 @@ public class Ip {
 	}
 	        //calculo de numero de redes disponiveis
 	private int calcIpRede(String classse) {
-		if (classe.equals("A")) { //ele ceta esse valor para consegyuir fazer o proximo calculo 
+		if (classe.equals("A")) { //ele ceta esse valor para conseguir fazer o proximo calculo 
 			return 8;
 		} else if (classe.equals("B")) {
 			return 16;
