@@ -25,12 +25,17 @@ public class TelaCalculadorIP {
     private JLabel labelResultadoMaskDec;
     private JLabel labelResultadoQuantidade;
     private JLabel labelResultadoRede;
+    private JLabel labelIpRede;
+    private JLabel labelPrimeiroIpValido;
+    private JLabel labelUltimoIpValido;
+    private JLabel labelIpBroadcast;
+    
     private JLabel labelMensagemErro;
     
     // configura√ß√µes padr√£o da tela
     public void criarTelaCalculadoraIP() {
         JFrame tela = new JFrame();
-        tela.setSize(460, 380);
+        tela.setSize(460, 440);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setResizable(false);
         tela.setLayout(null);
@@ -91,12 +96,41 @@ public class TelaCalculadorIP {
         labelResultadoRede.setFont(new Font("A", Font.BOLD, 14));
         labelResultadoRede.setVisible(true);
         
+        // criando e personalizando o ip da rede
+        labelIpRede = new JLabel();
+        labelIpRede.setText("IP da rede: ");
+        labelIpRede.setBounds(40, 280, 380, 25);
+        labelIpRede.setFont(new Font("A", Font.BOLD, 14));
+        labelIpRede.setVisible(true);
+        
+        // criando e personalizando o primeiro ip valido
+        labelPrimeiroIpValido = new JLabel();
+        labelPrimeiroIpValido.setText("Primeiro IP v·lido: ");
+        labelPrimeiroIpValido.setBounds(40, 300, 380, 25);
+        labelPrimeiroIpValido.setFont(new Font("A", Font.BOLD, 14));
+        labelPrimeiroIpValido.setVisible(true);
+        
+        //criando e personalizando o ultimo ip valido
+        labelUltimoIpValido = new JLabel();
+        labelUltimoIpValido.setText("Ultimo IP v·lido: ");
+        labelUltimoIpValido.setBounds(40, 320, 380, 25);
+        labelUltimoIpValido.setFont(new Font("A", Font.BOLD, 14));
+        labelUltimoIpValido.setVisible(true);
+        
+        labelIpBroadcast = new JLabel();
+        labelIpBroadcast.setText("IP de broadcast: ");
+        labelIpBroadcast.setBounds(40, 340, 380, 25);
+        labelIpBroadcast.setFont(new Font("A", Font.BOLD, 14));
+        labelIpBroadcast.setVisible(true);
+        
+        
+        
         // criando e personalizando a mensagem de erro
         labelMensagemErro = new JLabel("Formato inv·lido! Ex: 192.168.0.170/24");
         labelMensagemErro.setForeground(Color.RED);
         Font mensagemErro = new Font(null, Font.BOLD, 18);
         labelMensagemErro.setFont(mensagemErro);
-        labelMensagemErro.setBounds(80, 150, 300, 25);
+        labelMensagemErro.setBounds(60, 150, 350, 25);
         labelMensagemErro.setVisible(false);
 		
 		
@@ -110,6 +144,12 @@ public class TelaCalculadorIP {
         container.add(labelResultadoMaskDec);
         container.add(labelResultadoQuantidade);
         container.add(labelResultadoRede);
+        container.add(labelIpRede);
+        container.add(labelPrimeiroIpValido);
+        container.add(labelUltimoIpValido);
+        container.add(labelIpBroadcast);
+        
+        
 		container.add(labelMensagemErro);
 		
 		
@@ -132,11 +172,16 @@ public class TelaCalculadorIP {
                 labelResultadoQuantidade.setText("IPs v·lidos por rede: " + ip.getIpsValidos());
                 
                 //mudando o texto para caso o numero de redes seja 1
-                if (ip.getIpRede() == 1) {
-                	labelResultadoRede.setText("Redes detectadas: " + ip.getIpRede() + " Rede");
+                if (ip.getRedesDisponiveis() == 1) {
+                	labelResultadoRede.setText("Redes detectadas: " + ip.getRedesDisponiveis() + " Rede");
                 } else {
-                	labelResultadoRede.setText("Redes detectadas: " + ip.getIpRede() + " Sub-redes");
+                	labelResultadoRede.setText("Redes detectadas: " + ip.getRedesDisponiveis() + " Sub-redes");
                 }
+                // tabela dos Ips
+                labelIpRede.setText("IP da rede: " + ip.getIpDeRede());
+                labelPrimeiroIpValido.setText("Primeiro IP v·lido: " + ip.getPrimeiroIpValido());
+                labelUltimoIpValido.setText("Ultimo IP v·lido: " + ip.getUltimoIpValido());
+                labelIpBroadcast.setText("IP de broadcast: " + ip.getIpBroadcast());
 				
 			} catch (Exception ex) { //quando tiver um erro e entrar no catch ele ir√° tirar os resultados e mostrar a mensagem de erro
 				labelResultadoClasse.setText("Classe: ??? ");
@@ -144,6 +189,11 @@ public class TelaCalculadorIP {
                 labelResultadoMaskDec.setText("M·scara Decimal: ??? ");
                 labelResultadoQuantidade.setText("IPs v·lidos por rede: ??? ");
                 labelResultadoRede.setText("Redes detectadas: ??? ");
+                
+                labelIpRede.setText("IP de broadcast: ???");
+                labelPrimeiroIpValido.setText("Primeiro IP v·lido: ???");
+                labelUltimoIpValido.setText("Ultimo IP v·lido: ???");
+                labelIpBroadcast.setText("IP de broadcast: ???");
 		        
                 labelMensagemErro.setVisible(true);
 			}

@@ -1,5 +1,9 @@
 package br.dev.guilherme.classificadora.model;
 
+//biblioteca baixada para fazer a tabela dos Ips
+import org.apache.commons.net.util.SubnetUtils;
+import org.apache.commons.net.util.SubnetUtils.SubnetInfo;
+
 public class Ip {
 	
 	private int cidr;
@@ -8,8 +12,12 @@ public class Ip {
 	private String mascaraBinario;
 	private String endereco;
 	private int ipsValidos;
-	
 	private int rede;
+	 
+	private String ipRede;
+	private String primeiroIpValido;
+	private String ultimoIpValido;
+	private String ipBroadcast;
 	
 	
     // GETTERS
@@ -37,8 +45,24 @@ public class Ip {
         return ipsValidos;
     }
     
-    public int getIpRede() {
+    public int getRedesDisponiveis() {
         return rede;
+    }
+    
+    public String getIpDeRede() {
+        return ipRede;
+    }
+
+    public String getPrimeiroIpValido() {
+        return primeiroIpValido;
+    }
+
+    public String getUltimoIpValido() {
+        return ultimoIpValido;
+    }
+
+    public String getIpBroadcast() {
+        return ipBroadcast;
     }
 	
 	
@@ -54,6 +78,15 @@ public class Ip {
         this.ipsValidos = calcQuantidadeIPsValidos(cidr);
         this.rede = calcIpRede(classe);
         this.rede = calcQuantidadeSubRedes(classe, cidr);
+        
+        // Cálculos com SubnetUtils, não consegui fazer de nenhuma forma este calculo, então usei uma biblioteca externa baixada
+        SubnetUtils subnetUtils = new SubnetUtils(endereco, mascaraDecimal);
+        SubnetInfo info = subnetUtils.getInfo();
+
+        this.ipRede = info.getNetworkAddress();
+        this.primeiroIpValido = info.getLowAddress();
+        this.ultimoIpValido = info.getHighAddress();
+        this.ipBroadcast = info.getBroadcastAddress();
 
 	}
 	
@@ -118,5 +151,7 @@ public class Ip {
 
 	    return (int) Math.pow(2, bitsParaSubrede); // 2 elevado aos bits de sub-rede
 	}
+	
+	
 
 }
