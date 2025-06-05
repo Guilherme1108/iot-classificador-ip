@@ -1,9 +1,5 @@
 package br.dev.guilherme.classificadora.model;
 
-//biblioteca baixada para fazer a tabela dos Ips
-import org.apache.commons.net.util.SubnetUtils;
-import org.apache.commons.net.util.SubnetUtils.SubnetInfo;
-
 public class Ip {
 	
 	private int cidr;
@@ -78,16 +74,6 @@ public class Ip {
         this.ipsValidos = calcQuantidadeIPsValidos(cidr);
         this.rede = calcIpRede(classe);
         this.rede = calcQuantidadeSubRedes(classe, cidr);
-        
-        // Cálculos com SubnetUtils, não consegui fazer de nenhuma forma este calculo, então usei uma biblioteca externa baixada
-        SubnetUtils subnetUtils = new SubnetUtils(endereco, mascaraDecimal);
-        SubnetInfo info = subnetUtils.getInfo();
-
-        this.ipRede = info.getNetworkAddress();
-        this.primeiroIpValido = info.getLowAddress();
-        this.ultimoIpValido = info.getHighAddress();
-        this.ipBroadcast = info.getBroadcastAddress();
-
 	}
 	
                   // calculo da classe
@@ -141,11 +127,11 @@ public class Ip {
 		}
 	}
 	
-	// cálculo da quantidade de sub-redes possíveis com base na classe e CIDR
+	// cï¿½lculo da quantidade de sub-redes possï¿½veis com base na classe e CIDR
 	private int calcQuantidadeSubRedes(String classe, int cidr) {
-	    int bitsRede = calcIpRede(classe); // usa o método acima
+	    int bitsRede = calcIpRede(classe); // usa o mï¿½todo acima
 
-	    if (cidr < bitsRede) return 0; // CIDR inválido para essa classe
+	    if (cidr < bitsRede) return 0; // CIDR invï¿½lido para essa classe
 
 	    int bitsParaSubrede = cidr - bitsRede;
 

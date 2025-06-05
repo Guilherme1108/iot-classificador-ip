@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import br.dev.guilherme.classificadora.model.Ip;
@@ -25,6 +27,10 @@ public class TelaCalculadorIP {
     private JLabel labelResultadoMaskDec;
     private JLabel labelResultadoQuantidade;
     private JLabel labelResultadoRede;
+    
+    private JList tabelaDeIps;
+    private JScrollPane scrollTabelaIps;
+    
     private JLabel labelIpRede;
     private JLabel labelPrimeiroIpValido;
     private JLabel labelUltimoIpValido;
@@ -35,7 +41,7 @@ public class TelaCalculadorIP {
     // configura√ß√µes padr√£o da tela
     public void criarTelaCalculadoraIP() {
         JFrame tela = new JFrame();
-        tela.setSize(460, 440);
+        tela.setSize(460, 700);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.setResizable(false);
         tela.setLayout(null);
@@ -96,30 +102,37 @@ public class TelaCalculadorIP {
         labelResultadoRede.setFont(new Font("A", Font.BOLD, 14));
         labelResultadoRede.setVisible(true);
         
+        // criando o a tabela
+        tabelaDeIps = new JList<>();
+        
+        // criando o scroll
+        scrollTabelaIps = new JScrollPane(tabelaDeIps);
+        scrollTabelaIps.setBounds(30, 290, 380, 300);
+        
         // criando e personalizando o ip da rede
         labelIpRede = new JLabel();
         labelIpRede.setText("IP da rede: ");
-        labelIpRede.setBounds(40, 280, 380, 25);
+        labelIpRede.setBounds(40, 300, 380, 25);
         labelIpRede.setFont(new Font("A", Font.BOLD, 14));
         labelIpRede.setVisible(true);
         
         // criando e personalizando o primeiro ip valido
         labelPrimeiroIpValido = new JLabel();
         labelPrimeiroIpValido.setText("Primeiro IP v·lido: ");
-        labelPrimeiroIpValido.setBounds(40, 300, 380, 25);
+        labelPrimeiroIpValido.setBounds(40, 320, 380, 25);
         labelPrimeiroIpValido.setFont(new Font("A", Font.BOLD, 14));
         labelPrimeiroIpValido.setVisible(true);
         
         //criando e personalizando o ultimo ip valido
         labelUltimoIpValido = new JLabel();
         labelUltimoIpValido.setText("Ultimo IP v·lido: ");
-        labelUltimoIpValido.setBounds(40, 320, 380, 25);
+        labelUltimoIpValido.setBounds(40, 340, 380, 25);
         labelUltimoIpValido.setFont(new Font("A", Font.BOLD, 14));
         labelUltimoIpValido.setVisible(true);
         
         labelIpBroadcast = new JLabel();
         labelIpBroadcast.setText("IP de broadcast: ");
-        labelIpBroadcast.setBounds(40, 340, 380, 25);
+        labelIpBroadcast.setBounds(40, 360, 380, 25);
         labelIpBroadcast.setFont(new Font("A", Font.BOLD, 14));
         labelIpBroadcast.setVisible(true);
         
@@ -148,6 +161,7 @@ public class TelaCalculadorIP {
         container.add(labelPrimeiroIpValido);
         container.add(labelUltimoIpValido);
         container.add(labelIpBroadcast);
+        container.add(scrollTabelaIps);
         
         
 		container.add(labelMensagemErro);
