@@ -1,6 +1,6 @@
 # Calculadora de IP
 
-![preview](https://github.com/user-attachments/assets/a367d3e1-ee21-48b2-9051-25b11d385f11)
+![preview](https://github.com/user-attachments/assets/370b4c2d-d483-40a0-aea7-0ff8028dfcd5)
 
 Este é um projeto em Java que recebe um Ip com CIDR e devolve as seguintes informações
 * Classe do IP
